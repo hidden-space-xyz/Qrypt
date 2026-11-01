@@ -39,19 +39,16 @@
           var m = window.matchMedia("(prefers-color-scheme: dark)");
           r.setAttribute("data-theme", m.matches ? "dark" : "light");
         }
-        var title = document.querySelector("title");
         var brand = function () {
           if (/degoog\s*$/i.test(document.title)) {
             document.title = document.title.replace(/degoog\s*$/i, "Qrypt");
           }
         };
-        if (title) {
-          new MutationObserver(brand).observe(title, {
-            childList: true,
-            characterData: true,
-            subtree: true,
-          });
-        }
+        new MutationObserver(brand).observe(document.head, {
+          childList: true,
+          characterData: true,
+          subtree: true,
+        });
       })();
     </script>
     <link rel="modulepreload" href="/public/app.js?v=__APP_VERSION__" />

@@ -29,6 +29,7 @@ editor palette, a terminal prompt and line-numbered results, in light and dark.*
 - **⌨️ Terminal Prompt** — A prompt logo with a blinking caret, a `/` search prompt and a `// comment` footer
 - **🔢 Line-Numbered Results** — An editor-style gutter numbers each result on wide screens
 - **📄 At a Glance** — The summary box is framed as `glance.md`
+- **✨ Motion** — The logo types itself in, the focused search bar runs a scan along its border and results cascade in. Everything stays still when the device asks for reduced motion
 - **🌗 Light and Dark** — Follows degoog's appearance setting
 - **🌈 Five Accents** — Mint, Amber, Violet, Cyan and Rose for the prompt, caret, focus ring and active tab
 - **🏷️ Qrypt Branding** — Page and tab titles, logo, favicon and the no-JS pages all read **Qrypt**
@@ -62,6 +63,7 @@ Open **Settings → Themes → Qrypt → Configure**:
 | ------------ | ------------------------------- | ------- | ----------------------------------------------------------------- |
 | Accent       | Mint, Amber, Violet, Cyan, Rose | Mint    | Highlight colour for the prompt, caret, focus ring and active tab |
 | Line numbers | Show, Hide                      | Show    | Numbers each result in an editor-style gutter on wide screens     |
+| Animations   | On, Off                         | On      | Typed logo, search bar scan and results that cascade in           |
 
 > [!NOTE]
 > degoog sets a few names in its core, outside a theme's reach, so they still read "degoog": the OpenSearch
@@ -72,15 +74,20 @@ Open **Settings → Themes → Qrypt → Configure**:
 ```text
 Qrypt/
 ├── package.json           Store manifest that lists the theme for degoog
+├── .github/workflows/     Weekly check of new degoog releases against the files Qrypt relies on
 └── themes/qrypt/
     ├── theme.json         Theme metadata, templates and settings schema
-    ├── style.css          Palette, typography, accents and layout
+    ├── style.css          Palette, typography, accents, results header and motion
     ├── layout.html        Page shell, favicon and Qrypt titles
     ├── index-templates/   Home logo, search box and footer
-    ├── search-templates/  Results page header
-    ├── nojs/              Logo and header for the no-JS pages
+    ├── nojs/              Logo for the no-JS home page
     └── screenshots/       Images shown in the degoog Store
 ```
+
+The results header is degoog's own markup restyled from `style.css`, so changes degoog makes to it reach Qrypt
+without a theme update. When a new degoog release touches a file Qrypt relies on, the **degoog upstream**
+workflow fails with the diff in its summary; once Qrypt is updated, set `DEGOOG_BASELINE` in the workflow to
+that release.
 
 ## 💡 How to Contribute
 

@@ -2,7 +2,7 @@
   "name": "Qrypt",
   "author": "Hidden Space",
   "description": "Code-focused theme for Qrypt: monospace type, editor palette and a terminal prompt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "css": "style.css",
   "html": {
     "layout": "layout.html"
@@ -10,8 +10,7 @@
   "templates": {
     "home-logo": "index-templates/logo.html",
     "home-search": "index-templates/search.html",
-    "home-footer": "index-templates/footer.html",
-    "search-header": "search-templates/header.html"
+    "home-footer": "index-templates/footer.html"
   },
   "settingsSchema": [
     {
@@ -29,10 +28,19 @@
       "options": ["on", "off"],
       "optionLabels": ["Show", "Hide"],
       "description": "Numbers each result in an editor-style gutter on wide screens."
+    },
+    {
+      "key": "motion",
+      "label": "Animations",
+      "type": "select",
+      "options": ["on", "off"],
+      "optionLabels": ["On", "Off"],
+      "description": "Typed logo, search bar scan and highlighted new results. Always off when the device asks for reduced motion."
     }
   ],
   "dataAttrsFromSettings": {
     "accent": "qrypt-accent",
-    "gutter": "qrypt-gutter"
+    "gutter": "qrypt-gutter",
+    "motion": "qrypt-motion"
   }
 }

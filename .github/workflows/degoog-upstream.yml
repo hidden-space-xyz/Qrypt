@@ -1,0 +1,61 @@
+name: degoog upstream
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DEGOOG_BASELINE: "1.1.1"
+  WATCHED: >-
+    src/public/themes/degoog-theme/layout.html
+    src/public/themes/degoog-theme/theme.json
+    src/public/themes/degoog-theme/index.html
+    src/public/themes/degoog-theme/search.html
+    src/public/themes/degoog-theme/index-templates/logo.html
+    src/public/themes/degoog-theme/index-templates/search.html
+    src/public/themes/degoog-theme/index-templates/footer.html
+    src/public/themes/degoog-theme/search-templates/header.html
+    src/public/themes/degoog-theme/search-templates/result.html
+    src/public/themes/degoog-theme/nojs/logo.html
+    src/public/themes/degoog-theme/nojs/search-header.html
+    src/styles/style.scss
+    src/styles/components/generic/_search-bar.scss
+    src/styles/components/overrides/_logo.scss
+    src/server/extensions/themes/registry.tsx
+    src/server/nojs/templates.ts
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compare the degoog files Qrypt relies on
+        run: |
+          git clone --quiet --bare --filter=blob:none https://github.com/degoog-org/degoog.git upstream.git
+          latest=$(git --git-dir=upstream.git tag --list | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+          echo "Baseline $DEGOOG_BASELINE, latest $latest"
+          if [ "$latest" = "$DEGOOG_BASELINE" ]; then
+            echo "Qrypt is checked against the latest degoog release." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git --git-dir=upstream.git diff "$DEGOOG_BASELINE" "$latest" -- $WATCHED > drift.diff
+          if [ ! -s drift.diff ]; then
+            echo "degoog $latest leaves the files Qrypt relies on untouched. Set DEGOOG_BASELINE to $latest." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          {
+            echo "## degoog $DEGOOG_BASELINE → $latest touches files Qrypt relies on"
+            echo
+            git --git-dir=upstream.git diff --stat "$DEGOOG_BASELINE" "$latest" -- $WATCHED
+            echo
+            echo '```diff'
+            head -c 60000 drift.diff
+            echo '```'
+            echo
+            echo "Port what matters to themes/qrypt, then set DEGOOG_BASELINE to $latest."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::degoog $latest changed files Qrypt relies on, see the job summary"
+          exit 1
