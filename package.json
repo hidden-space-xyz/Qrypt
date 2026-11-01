@@ -1,0 +1,15 @@
+{
+  "name": "qrypt",
+  "description": "Qrypt, a code-focused theme for degoog search.",
+  "repo-image": "https://raw.githubusercontent.com/hidden-space-xyz/Qrypt/master/themes/qrypt/favicon.svg",
+  "author": "Hidden Space",
+  "themes": [
+    {
+      "path": "themes/qrypt",
+      "name": "Qrypt",
+      "description": "Monospace type, editor palette, terminal prompt and line-numbered results. Five accents, light and dark.",
+      "version": "1.0.0",
+      "minDegoogVersion": "1.1.1"
+    }
+  ]
+}
