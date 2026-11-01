@@ -29,7 +29,7 @@ editor palette, a terminal prompt and line-numbered results, in light and dark.*
 - **⌨️ Terminal Prompt** — A prompt logo with a blinking caret, a `/` search prompt and a `// comment` footer
 - **🔢 Line-Numbered Results** — An editor-style gutter numbers each result on wide screens
 - **📄 At a Glance** — The summary box is framed as `glance.md`
-- **✨ Motion** — The logo types itself in, the focused search bar runs a scan along its border and results cascade in. Everything stays still when the device asks for reduced motion
+- **✨ Motion** — The logo types itself in, faint code rain falls around the home page, the focused search bar runs a scan along its border and results cascade in. Everything stays still when the device asks for reduced motion
 - **🌗 Light and Dark** — Follows degoog's appearance setting
 - **🌈 Five Accents** — Mint, Amber, Violet, Cyan and Rose for the prompt, caret, focus ring and active tab
 - **🏷️ Qrypt Branding** — Page and tab titles, logo, favicon and the no-JS pages all read **Qrypt**
@@ -63,7 +63,7 @@ Open **Settings → Themes → Qrypt → Configure**:
 | ------------ | ------------------------------- | ------- | ----------------------------------------------------------------- |
 | Accent       | Mint, Amber, Violet, Cyan, Rose | Mint    | Highlight colour for the prompt, caret, focus ring and active tab |
 | Line numbers | Show, Hide                      | Show    | Numbers each result in an editor-style gutter on wide screens     |
-| Animations   | On, Off                         | On      | Typed logo, search bar scan and results that cascade in           |
+| Animations   | On, Off                         | On      | Typed logo, code rain, search bar scan and cascading results      |
 
 > [!NOTE]
 > degoog sets a few names in its core, outside a theme's reach, so they still read "degoog": the OpenSearch

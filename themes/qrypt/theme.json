@@ -35,7 +35,7 @@
       "type": "select",
       "options": ["on", "off"],
       "optionLabels": ["On", "Off"],
-      "description": "Typed logo, search bar scan and highlighted new results. Always off when the device asks for reduced motion."
+      "description": "Typed logo, code rain on the home page, search bar scan and highlighted new results. Always off when the device asks for reduced motion."
     }
   ],
   "dataAttrsFromSettings": {

@@ -388,6 +388,75 @@ body:has(#main-home) {
   display: none;
 }
 
+.qrypt-rain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: none;
+  overflow: hidden;
+  color: var(--q-accent);
+  pointer-events: none;
+  user-select: none;
+  mask: radial-gradient(
+    ellipse 40rem 20rem at 50% 42%,
+    transparent 45%,
+    #000 100%
+  );
+}
+
+.qrypt-rain span {
+  position: absolute;
+  top: 0;
+  left: calc(var(--x) * 1%);
+  width: 1ch;
+  font-size: calc(1.5rem - var(--d) * 0.06rem);
+  line-height: 1.15;
+  text-align: center;
+  word-break: break-all;
+  opacity: calc(2.4 / var(--d));
+  mask: linear-gradient(transparent, #000 80%);
+  transform: translateY(-100%);
+  animation: qrypt-rain calc(var(--d) * 1s) linear calc(var(--t) * 1s) infinite;
+  will-change: transform;
+}
+
+.qrypt-rain span::after {
+  color: var(--q-text);
+  text-shadow: 0 0 0.5em var(--q-accent);
+}
+
+.qrypt-rain span:nth-child(4n + 1)::before {
+  content: "7f{0;1e=9a/c3*b2}d+8#4";
+}
+
+.qrypt-rain span:nth-child(4n + 1)::after {
+  content: "1";
+}
+
+.qrypt-rain span:nth-child(4n + 2)::before {
+  content: "0x1b(5)=>e9;f2|c7a$3d0";
+}
+
+.qrypt-rain span:nth-child(4n + 2)::after {
+  content: "0";
+}
+
+.qrypt-rain span:nth-child(4n + 3)::before {
+  content: "{a4}8c=1f;0e*72b|9d/6";
+}
+
+.qrypt-rain span:nth-child(4n + 3)::after {
+  content: "f";
+}
+
+.qrypt-rain span:nth-child(4n + 4)::before {
+  content: "3e:9f0[b1]c8=a5;d7+2^";
+}
+
+.qrypt-rain span:nth-child(4n + 4)::after {
+  content: "a";
+}
+
 #results-tabs {
   border-bottom-color: var(--q-line-soft);
 }
@@ -626,12 +695,9 @@ samp {
   }
 }
 
-@keyframes qrypt-breathe {
-  from {
-    opacity: 0.5;
-  }
+@keyframes qrypt-rain {
   to {
-    opacity: 1;
+    transform: translateY(100vh);
   }
 }
 
@@ -689,8 +755,8 @@ samp {
     animation: qrypt-fade 0.6s ease-out 0.5s backwards;
   }
 
-  :root:not([data-qrypt-motion="off"]) #main-home::before {
-    animation: qrypt-breathe 6s ease-in-out infinite alternate;
+  :root:not([data-qrypt-motion="off"]) .qrypt-rain {
+    display: block;
   }
 
   :root:not([data-qrypt-motion="off"])
