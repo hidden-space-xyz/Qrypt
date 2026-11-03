@@ -1,7 +1,7 @@
 {
   "name": "Qrypt",
   "author": "Hidden Space",
-  "description": "Code-focused theme for Qrypt: monospace type, editor palette and a terminal prompt.",
+  "description": "Code-focused theme for degoog: monospace type, editor palette and a terminal prompt.",
   "version": "1.2.0",
   "css": "style.css",
   "html": {

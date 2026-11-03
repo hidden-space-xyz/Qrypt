@@ -380,10 +380,6 @@ body:has(#main-home) {
   text-decoration: none;
 }
 
-.qrypt-footer .qrypt-footer-love {
-  color: var(--q-err);
-}
-
 .qrypt-footer [hidden] {
   display: none;
 }
